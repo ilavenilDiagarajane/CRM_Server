@@ -34,6 +34,7 @@ router.post("/register", async function (req, res) {
   try {
     const { first_name, last_name, emp_id, emp_role, email, password } =
       req.body;
+    
  //hash password method
     const hashpass = await hashingpassword(password);
     //user exists or not function
@@ -261,16 +262,16 @@ router.post("/forgotpassword", async function (req, res) {
     const email = req.body.email;
     let randomString = randomstring.generate();
     const isuserexist = await getUserName(email);
-
+    console.log(isuserexist);
     if (!isuserexist) {
       res.status(401).send({ error: "invalid credentials" });
     } else {
       let transporter = nodemailer.createTransport({
-        host: "smtp.mailtrap.io",
-        port: 2525,
+        service: "gmail",
+        
         auth: {
-          user: "e3640a19473a56",
-          pass: "8c72472b0a0da3",
+          user: "nodemaililavenil@gmail.com",
+          pass: "zwypnmpsllfizdtb",
         },
       });
       //Mail options
